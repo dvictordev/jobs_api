@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.method.annotation.ErrorsMethodArgumentResolver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +16,17 @@ public class ExceptionHandlerController {
 
     private MessageSource messageSource;
 
-    public ExceptionHandlerController(MessageSource message){
+    public ExceptionHandlerController(MessageSource message) {
         this.messageSource = message;
     }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<List<ErrorMessageDTO>> handleMethodArgumentNotValidException(MethodArgumentNotValidException e){
+    public ResponseEntity<List<ErrorMessageDTO>> handleMethodArgumentNotValidException(
+            MethodArgumentNotValidException e) {
         List<ErrorMessageDTO> dto = new ArrayList<>();
         e.getBindingResult().getFieldErrors().forEach(err -> {
             String message = messageSource.getMessage(err, LocaleContextHolder.getLocale());
-           ErrorMessageDTO error =  new ErrorMessageDTO(message, err.getField());
+            ErrorMessageDTO error = new ErrorMessageDTO(message, err.getField());
             dto.add(error);
         });
 
