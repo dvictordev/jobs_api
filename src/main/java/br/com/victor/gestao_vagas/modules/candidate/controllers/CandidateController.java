@@ -1,6 +1,9 @@
 package br.com.victor.gestao_vagas.modules.candidate.controllers;
 
+import br.com.victor.gestao_vagas.modules.candidate.CandidateEntity;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,5 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CandidateController {
 
     @PostMapping("/")
-    public void create(){}
+    public CandidateEntity create(@Valid @RequestBody CandidateEntity candidate){
+        return candidate;
+    }
 }
