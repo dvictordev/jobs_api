@@ -12,7 +12,7 @@ public class CreateCompanyUseCase {
 
     // Dependency injection
     @Autowired
-    CompanyRepositorie companyRepositorie;
+    private CompanyRepositorie companyRepositorie;
 
     public CompanyEntity execute(CompanyEntity companyEntity) {
         this.companyRepositorie.findByUsernameOrEmail(companyEntity.getUsername(), companyEntity.getEmail())
