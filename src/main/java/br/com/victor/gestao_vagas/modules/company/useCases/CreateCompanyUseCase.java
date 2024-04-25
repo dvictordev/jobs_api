@@ -10,16 +10,17 @@ import br.com.victor.gestao_vagas.modules.company.repositories.CompanyRepositori
 @Service
 public class CreateCompanyUseCase {
 
+    // Dependency injection
     @Autowired
     CompanyRepositorie companyRepositorie;
 
-    public void execute(CompanyEntity companyEntity) {
+    public CompanyEntity execute(CompanyEntity companyEntity) {
         this.companyRepositorie.findByUsernameOrEmail(companyEntity.getUsername(), companyEntity.getEmail())
                 .ifPresent((user) -> {
                     throw new UserFoundException();
                 });
         ;
 
-        this.companyRepositorie.save(companyEntity);
+        return this.companyRepositorie.save(companyEntity);
     }
 }
