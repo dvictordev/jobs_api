@@ -25,11 +25,12 @@ public class SecurityFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
+        SecurityContextHolder.getContext().setAuthentication(null);
         String header = request.getHeader("Authorization");
-        System.out.println(header);
 
         if (header != null) {
             var subjectToken = this.jwtProvider.validateToken(header);
+            System.out.println(subjectToken);
             if (subjectToken.isEmpty()) {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 return;
