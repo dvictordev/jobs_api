@@ -1,6 +1,6 @@
 package br.com.victor.gestao_vagas.modules.candidate.controllers;
 
-import br.com.victor.gestao_vagas.modules.candidate.CandidateEntity;
+import br.com.victor.gestao_vagas.modules.candidate.entities.CandidateEntity;
 import br.com.victor.gestao_vagas.modules.candidate.useCases.CreateCandidateUseCase;
 import jakarta.validation.Valid;
 
