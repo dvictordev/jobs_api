@@ -36,7 +36,7 @@ public class CandidateController {
         }
     }
 
-    @GetMapping("/profile")
+    @GetMapping("/")
     public ResponseEntity<Object> findCandidate(HttpServletRequest httpServletRequest) {
         var id = httpServletRequest.getAttribute("candidate_id");
         try {
@@ -46,4 +46,5 @@ public class CandidateController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
 }
