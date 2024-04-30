@@ -1,12 +1,5 @@
 package br.com.victor.gestao_vagas.modules.candidate.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+public record AuthCandidateDTO(String username, String password) {
 
-@Data
-@AllArgsConstructor
-public class AuthCandidateDTO {
-
-    private String username;
-    private String password;
 }

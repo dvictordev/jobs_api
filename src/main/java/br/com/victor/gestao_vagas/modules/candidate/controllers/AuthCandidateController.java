@@ -21,7 +21,7 @@ public class AuthCandidateController {
     private AuthCandidateUseCase authCandidateUseCase;
 
     @PostMapping("/candidate")
-    public ResponseEntity<String> authenticate(@RequestBody AuthCandidateDTO authCandidateDTO)
+    public ResponseEntity<Object> authenticate(@RequestBody AuthCandidateDTO authCandidateDTO)
             throws AuthenticationException {
         try {
             var result = this.authCandidateUseCase.execute(authCandidateDTO);
