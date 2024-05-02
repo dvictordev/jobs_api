@@ -3,6 +3,7 @@ package br.com.victor.gestao_vagas.modules.company.controllers;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,16 +16,18 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/job")
+@RequestMapping("/company")
 public class JobController {
 
     @Autowired
     private CreateJobUseCase createJobUseCase;
 
-    @PostMapping("/")
+    @PostMapping("/job")
+    @PreAuthorize("hasRole('COMPANY')")
     public JobEntity create(@Valid @RequestBody CreateJobDTO createJobDTO, HttpServletRequest request) {
 
         var companyId = request.getAttribute("company_id");
+        System.out.println(companyId);
 
         var jobEntity = JobEntity.builder().benefits(createJobDTO.getBenefits()).companyId(UUID.fromString(companyId
                 .toString()))

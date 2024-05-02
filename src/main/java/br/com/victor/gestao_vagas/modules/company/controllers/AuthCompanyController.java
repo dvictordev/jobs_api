@@ -21,7 +21,7 @@ public class AuthCompanyController {
     private AuthCompanyUseCase authCompanyUseCase;
 
     @PostMapping("/auth")
-    public ResponseEntity<String> auth(@RequestBody AuthCompanyDTO authCompanyDTO) throws AuthenticationException {
+    public ResponseEntity<Object> auth(@RequestBody AuthCompanyDTO authCompanyDTO) throws AuthenticationException {
         try {
             var result = this.authCompanyUseCase.execute(authCompanyDTO);
             return ResponseEntity.ok().body(result);
