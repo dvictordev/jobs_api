@@ -1,5 +1,6 @@
 package br.com.victor.gestao_vagas.modules.candidate.controllers;
 
+import br.com.victor.gestao_vagas.modules.candidate.dto.ProfileCandidateReponseDTO;
 import br.com.victor.gestao_vagas.modules.candidate.entities.CandidateEntity;
 import br.com.victor.gestao_vagas.modules.candidate.useCases.CreateCandidateUseCase;
 import br.com.victor.gestao_vagas.modules.candidate.useCases.ListAllJobsByFilterUseCase;
@@ -54,6 +55,16 @@ public class CandidateController {
 
     @GetMapping("/")
     @PreAuthorize("hasRole('CANDIDATE')")
+    @Tag(name = "Candidato", description = "Informacoes do candidato")
+    @Operation(summary = "Perfil do candidato", description = "Essa funcao é responsavel por buscar as informacoes do perfil do candidato")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = {
+                    @Content(schema = @Schema(implementation = ProfileCandidateReponseDTO.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "User not found")
+
+    })
+    @SecurityRequirement(name = "jwt_auth")
     public ResponseEntity<Object> findCandidate(HttpServletRequest httpServletRequest) {
         var id = httpServletRequest.getAttribute("candidate_id");
         try {
