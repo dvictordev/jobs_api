@@ -17,7 +17,6 @@ import com.auth0.jwt.algorithms.Algorithm;
 
 import br.com.victor.gestao_vagas.modules.company.dto.AuthCompanyDTO;
 import br.com.victor.gestao_vagas.modules.company.dto.AuthCompanyResponseDTO;
-import br.com.victor.gestao_vagas.modules.company.dto.AuthCompanyResponseDTO.AuthCompanyResponseDTOBuilder;
 import br.com.victor.gestao_vagas.modules.company.repositories.CompanyRepositorie;
 
 @Service
