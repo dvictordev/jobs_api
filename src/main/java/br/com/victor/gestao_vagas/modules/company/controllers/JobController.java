@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.victor.gestao_vagas.modules.company.dto.CreateJobDTO;
 import br.com.victor.gestao_vagas.modules.company.entities.JobEntity;
 import br.com.victor.gestao_vagas.modules.company.useCases.CreateJobUseCase;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
@@ -24,6 +25,7 @@ public class JobController {
 
     @PostMapping("/job")
     @PreAuthorize("hasRole('COMPANY')")
+    @SecurityRequirement(name = "jwt_auth")
     public JobEntity create(@Valid @RequestBody CreateJobDTO createJobDTO, HttpServletRequest request) {
 
         var companyId = request.getAttribute("company_id");
